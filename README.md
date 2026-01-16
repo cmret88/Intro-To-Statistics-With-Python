@@ -36,3 +36,47 @@ Statistics with Python
 # Why does data type matter?
 # it matters because it helps us to know which sum stats and visualizations to use
 
+### Measure of Center ####
+# Histograms
+# Takes a bunch of data points and separates them into bins, or ranges of values
+# three different definitions, or measures, or center: mean, median, and mode
+
+# Mean, or average, common way to summarizing data
+# in Python, we can use numpy's mean function, passing it the variable of interest
+import numpy as np
+np.mean(msleep['sleep_total']
+
+# Median - the value where 50% of the data is lower than it, and 50% of the data is higher than it
+# we sort first, and then take the middle one, which is index 41 in this example
+msleep['sleep_total'].sort_values()
+msleep['sleep_total'].sort_values().iloc[41]
+# in Python, we can use np.median to do the calculation for us:
+np.median(msleep['sleep_total'])
+
+# Mode - most frequent value in data
+msleep['sleep_total'].value_counts()
+msleep['vore'].value_counts()
+# another option
+import statistics
+statistics.mode(msleep['vore'])
+# mode is often used for categorical variables
+
+# Adding an outlier
+# subset msleep to select rows where 'vore' equals 'insecti'
+msleep[msleep['vore'] == 'insecti']
+msleep[msleep['vore'] == "insecti"]['sleep_total'].agg([np.mean, np.median])
+# the mean goes down by more than 3 hours in this example, while the median changed by less than an hour
+
+# Which measure to use?
+import matplolib.pyplot as plt
+data['value'].hist()
+plt.show()
+# since the mean is more sensitive to extreme values, it works better for symmetrical data
+# however, if the data is skewed, meaning it's not symmatrical, like this, median is usually better to use
+# left-skewed and right-skewed data
+# the mean and median are different when data is skewed
+# the mean is pulled in the direction of the skew
+# the mean is lower than the median on the left-skewed data, and higher than the median on the right-skewed data
+# because the mean is pulled around by extreme values, it is best to use the median since it is less affected by outliers
+
+
