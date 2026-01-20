@@ -106,3 +106,99 @@ rice_consumption = food_consumption[food_consumption['food_category'] == 'rice']
 
 # Calculate mean and median of co2_emission with .agg()
 print(rice_consumption['co2_emission'].agg([np.mean, np.median]))
+
+#### Measures of spread ####
+# Describes how spread apart of close the data are
+# Variance - measures the avg distance from each data point to the data's mean
+
+# Calculating Variance
+# 1. Subtract mean from each data point
+dists = msleep['sleep_total'] - np.mean(msleep['sleep_total'])
+print(dists)
+
+# 2. Square each distance
+sq_dist = dists ** 2
+print(sq_dists)
+
+# 3. Sum square distances
+sum_sq_dists = np.sum(sp_dists)
+print(sum_sq_dists)
+
+# 4. Divide by number of data points - 1
+variance = sum_sq_dists/(83-1)
+print(variance)
+
+# the higher the variance, the more spread out the data is
+# we can calculate the variance in one step using np.var, setting the ddof argument to 1.
+
+# Using np.var()
+np.var(msleep['sleep_total'], ddof = 1)
+
+# without ddof = 1, population variance is calculated instead of sample variance:
+np.var(msleep['sleep_total'])
+
+# Standard Deviation - calculated by getting the square root of the variance
+np.sqrt(np.var(msleep['sleep_total'], ddof = 1))
+np.std(msleep['sleep_total'], ddof = 1)
+
+# Mean absolute deviation
+# takes the absolute value of the distances to the mean, and then takes the mean of those differences
+# similar to STD, but not the same
+dists = msleep['sleep_total'] - np.mean(msleep['sleep_total'])
+
+# Standard Deviation vs. Mean Absolute Deviation
+# STD squares distances, penalizing longer distances more than shorter ones
+# MAD penalizes distance equally
+# one isn't better than the other, but SD is more common than MAD
+
+# Quantiles - also called percentiles, split up the data into some # of equal parts
+np.quantile(msleep['sleep_total'], 0.5)
+# this example ^ gives us 10.1 hours, and means that 50% of mammals in the data set sleep <10.1 hours
+# the other 50% sleep more than 10.1 hours
+# this is the same as the median
+
+# we can also pass in a list of #s to get the multiple quantiles at once
+np.quantile(msleep['sleep_total'], [0, 0.25, 0.5, 0.75, 1])
+# this example ^ splits data into four equal parts, also called quartiles
+
+# Boxplots use quartiles
+import matplotlib.pyplot as plt
+plt.boxplot(msleep['sleep_total'])
+plt.show()
+
+# Splitting the data in five equal pieces
+np.quantile(msleep['sleep_total'], [0, 0.2, 0.4, 0.6, 0.8, 1])
+# Another option - takes starting #, stopping #, and the # intervals
+np.linspace(start, stop, num)
+
+# We can compute the same quantiles using np.linspace starting at 0, stopping at 1, and splitting into 5 intervals
+np.quantiles(msleep['sleep_total'], np.linspace(0, 1, 5))
+
+# Interquartile Range (IQR)
+# Distance between the 25th and 75th percentile, which is also the height of the box in a boxplot
+np.quantile(msleep['sleep_total'], 0.75) - np.quantile(msleep['sleep_total'], 0.25)
+from scipy.stats import iqr
+iqr(msleep['sleep_total'])
+
+# Outliers - data points that are substantially different from others
+# How do we know what 'substantially different' means?
+# Rule of thumb:
+data < Q1 - 1.5 x IQR
+# or
+data > Q3 + 1.5 x IQR
+
+# Finding outliers
+# we start by calculating the IQR of the mammals' body weights in this example
+from scipy.stats import iqr
+iqr = iqr(msleep['bodywt'])
+lower_threshold = np.quantile(msleep['bodywt'], 0.25) - 1.5 * iqr
+upper_threshold = np.quantile(msleep['bodywt'], 0.75) + 1.5 * iqr
+# we can now subset the DataFrame to find mammals whose body weight is below or above thresholds
+msleep[(msleep['bodywt'] < lower_threshold) | (msleep['bodywt'] > upper_threshold)]
+
+# All in one go
+msleep['bodywt'].describe()
+
+
+
+
