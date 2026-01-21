@@ -193,6 +193,7 @@ from scipy.stats import iqr
 iqr = iqr(msleep['bodywt'])
 lower_threshold = np.quantile(msleep['bodywt'], 0.25) - 1.5 * iqr
 upper_threshold = np.quantile(msleep['bodywt'], 0.75) + 1.5 * iqr
+
 # we can now subset the DataFrame to find mammals whose body weight is below or above thresholds
 msleep[(msleep['bodywt'] < lower_threshold) | (msleep['bodywt'] > upper_threshold)]
 
@@ -222,3 +223,18 @@ print(np.quantile(food_consumption['co2_emission'], [0, 0.1, 0.2, 0.3, 0.4, 0.5,
 
 # Calculate total co2_emission per country: emissions_by_country
 emissions_by_country = food_consumption.groupby('country')['co2_emission'].sum()
+
+# Calculate total co2_emission per country: emissions_by_country
+emissions_by_country = food_consumption.groupby('country')['co2_emission'].sum()
+
+# Compute the first and third quantiles and IQR of emissions_by_country
+q1 = np.quantile(emissions_by_country, 0.25)
+q3 = np.quantile(emissions_by_country, 0.75)
+iqr = q3 - q1
+
+# Calculate the lower and upper cutoffs for outliers
+lower = q1 - 1.5 * iqr
+upper = q3 + 1.5 * iqr
+
+# Subset emissions_by_country to find outliers
+outliers = emissions_by_country[(emissions_by_country < lower) | (emissions_by_country > upper)]
