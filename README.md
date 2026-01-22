@@ -355,5 +355,10 @@ mean(die['number']) = 3.5
 # rolling a 1000 times makes it look even more like the theoretical
 # this is called the Law of Large Numbers
 
+# Creating a probability distribution
+# Remember that expected value can be calculated by multiplying each possible outcome with its corresponding probability and taking the sum
+# linspace expects at most three main arguments: the start, the stop, and the # of samples
 
-
+# Create a histogram of restaurant_groups and show plot
+restaurant_groups['group_size'].hist(bins = [2, 3, 4, 5, 6])
+plt.show()
