@@ -247,3 +247,23 @@ outliers = emissions_by_country[(emissions_by_country < lower) | (emissions_by_c
 # What is the probability of an event?
 # P(event) = # of ways event can happen/total # of possible outcomes
 # Coin flip example: P(heads) = 1 way to get heads/2 possible outcomes = 1/2 = 50%
+# Probability is always between 0 and 100% 
+# 0 means impossible, 100 means guaranteed
+
+# Sampling from a DataFrame
+# by default, it randomly samples one row from the DataFrame
+# if we run a second time, we might get another row
+sales_counts.sample()
+
+# Setting a random seed
+# this ensures we get the same results when we run the script
+np.random.seed(10)
+# Python's random # generator starting point
+# and orienting number, generates same value each time
+# number doesn't matter
+# the only thing that matters is that we use the same seed so that we get the same result
+
+# Sampling without replacement
+# we aren't replacing the name we already pulled out (in this "who is going to the meeting?" example)
+# the first time we picked someone, the chances were one in four
+# now, since we are not replacing the person already picked, each person has a 1 in 3 chance of being picked
