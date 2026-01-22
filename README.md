@@ -238,3 +238,12 @@ upper = q3 + 1.5 * iqr
 
 # Subset emissions_by_country to find outliers
 outliers = emissions_by_country[(emissions_by_country < lower) | (emissions_by_country > upper)]
+
+#### What are the chances? ####
+# What are the chances of closing a sale?
+# What are the chances of rain tomorrow?
+
+# Measuring Chance
+# What is the probability of an event?
+# P(event) = # of ways event can happen/total # of possible outcomes
+# Coin flip example: P(heads) = 1 way to get heads/2 possible outcomes = 1/2 = 50%
