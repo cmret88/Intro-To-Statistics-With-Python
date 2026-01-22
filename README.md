@@ -267,3 +267,16 @@ np.random.seed(10)
 # we aren't replacing the name we already pulled out (in this "who is going to the meeting?" example)
 # the first time we picked someone, the chances were one in four
 # now, since we are not replacing the person already picked, each person has a 1 in 3 chance of being picked
+# to recreate this in Python, we can pass 2 into the sample method, which will give us 2 rows of the DataFrame
+sales_counts.sample(2)
+
+# Sampling with replacement (because the meetings are happening on different days)
+# Everyone goes back to 1 in 4 chances of being picked
+sales_counts.sample(5, replace = True)
+
+# Independent events
+# two events are independent if the probability of the 2nd event isn't affected by the outcome of the first event
+# sampling with replacement - each pick is independent
+
+# Dependent events
+# two events are dependent if the probability of the second event is affected by the outcome of the first event
