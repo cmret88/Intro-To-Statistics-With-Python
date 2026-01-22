@@ -263,7 +263,7 @@ np.random.seed(10)
 # number doesn't matter
 # the only thing that matters is that we use the same seed so that we get the same result
 
-# Sampling without replacement
+# Sampling without replacement (meetings are happening on same day)
 # we aren't replacing the name we already pulled out (in this "who is going to the meeting?" example)
 # the first time we picked someone, the chances were one in four
 # now, since we are not replacing the person already picked, each person has a 1 in 3 chance of being picked
@@ -280,3 +280,80 @@ sales_counts.sample(5, replace = True)
 
 # Dependent events
 # two events are dependent if the probability of the second event is affected by the outcome of the first event
+# sampling without replacement - each pick is dependent
+
+# Count the deals for each product
+counts = amir_deals['product'].value_counts()
+
+# Calculate probability of picking a deal with each product
+# .shape[0] gives the count of rows, which is equal to the total number of deals Amir worked on
+probs = counts/amir_deals.shape[0]
+print(probs)
+
+# Set random seed
+np.random.seed(24)
+
+# Sample 5 deals without replacement
+sample_without_replacement = amir_deals.sample(5)
+print(sample_without_replacement)
+
+# Set random seed
+np.random.seed(24)
+
+# Sample 5 deals with replacement
+sample_with_replacement = amir_deals.sample(5, replace = True)
+print(sample_with_replacement)
+
+#### Discrete Distributions ####
+# Rolling the dice - 6 possible outcomes, 1/6 or 17% chance of being rolled
+# describes the probability of each possible outcome in a scenario
+# expected value: mean of a probability distribution - calculated by multiplying each value by its probability and summing
+# the expected value of rolling a fair die is 3.5
+# Barplot visualization
+
+# Probability = area
+P(die roll) =< 2 = ?
+# we can calculate probabilities of different outcomes by taking areas of the probability distribution
+# what is the probability that our die roll is less than or equal to 2?
+
+# Uneven die that contains 2 3s
+# we have a 0% chance of getting a 2 and a 33% chance of getting a 3
+# to calculate the expected value of this die, we now multiply 2 by 0 since it is impossible to get a 2 and 3 by its new probability, 1/3
+# gives us a value that is slightly higher than the fair die
+
+# Adding areas 
+P(uneven die roll) =< 2 = ?
+# 1/6 probability of getting 1 and 0 probability of getting 2
+# this sums to 1/6
+
+# the probability distributions we have seen so far are both discrete probability distribution (they have discrete outcomes)
+# when all outcomes have same probability, it is called discrete uniform distribution
+
+# Sampling from discrete distributions
+print(die) # shows probability of each outcome on a fair die
+np.mean(die['number'])
+
+# We will sample from it 10 times to simulate 10 rolls
+# We are sampling with replacement so that we're sampling from the same distribution each time
+rolls_10 = die.sample(10, replace = True)
+rolls_10
+
+# Visualizing a sample
+# we can visualize the outcomes of the ten rolls using a histogram, defining the bins we want using np.linspace
+rolls_10['number'].hist(bins=np.linspace(1,7,7))
+plt.show()
+
+# Sample distribution vs. theoretical distribution
+# sample of 10 rolls
+np.mean(rolls_10['number]) = 3.0
+
+# theoretical probability distribution
+mean(die['number']) = 3.5
+
+# the mean of our sample isn't super close to what we were expecting (3.0 vs 3.5)
+# but if we roll the die 100 times, the distribution of the rolls looks a bit more even, and the mean is close to 3.5
+# rolling a 1000 times makes it look even more like the theoretical
+# this is called the Law of Large Numbers
+
+
+
