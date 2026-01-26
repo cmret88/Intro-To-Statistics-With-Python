@@ -426,3 +426,43 @@ print(prob_greater_than_5)
 # Calculate probability of waiting 10-20 mins
 prob_between_10_and_20 = uniform.cdf(20,0,30) - uniform.cdf(10,0,30)
 print(prob_between_10_and_20)
+
+# Set random seed to 334
+np.random.seed(334)
+
+# Import uniform
+from scipy.stats import uniform
+
+# Generate 1000 wait times between 0 and 30 mins
+wait_times = uniform.rvs(0, 30, size=1000)
+
+# Create a histogram of simulated times and show plot
+plt.hist(wait_times)
+plt.show()
+
+#### The binomial distribution ####
+# Coin flipping
+# Binary outcomes - only two possible outcomes
+# 1/0, win/loss, True/False
+
+# A single flip
+# the argument is called size, or # of trials
+binom.rvs(# of coins, probability of heads/success, size=# of trials)
+from scipy.stats import binom
+binom.rvs(1, 0.5, size = 1)
+
+# one flip many times
+# flips 1 coin with 50% chance of successful 8 times
+binom.rvs(1, 0.5, size=8) 
+
+# many flips one time
+# swaps the first and last argument; flips 8 coins 1 time) # give us 1 #, which is total # of heads or successes
+binom.rvs(8, 0.5, size=1) 
+
+# many flips many times
+# we can pass 3 as the first argument, and set size = 10 to flip 3 coins
+# returns 10 numbers, each representing the total number of heads from each of flips
+
+# Other probabilities
+# for example, having a coin that is heavier on one side than the other, so the probability of getting heads is only 25%
+binom.rvs(3, 0.5, size=10)
