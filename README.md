@@ -379,3 +379,50 @@ groups_4_or_more = size_dist[size_dist['group_size'] >= 4]
 # Sum the probabilities of groups_4_or_more
 prob_4_or_more = groups_4_or_more['prob'].sum()
 print(prob_4_or_more)
+
+#### Continuous Distributions ####
+# How can we model continuous variables?
+# Waiting for the bus example
+# We can model with a probability distribution
+# We can use a continuous line called the continuous uniform distribution
+# What is the probability that we will wait between 4 and 7 minutes?
+# How about 7 minutes or less?
+from scipy.stats import uniform
+uniform.cdf(7,0,12) # pass at 7, set 0 and 12 for lower and upper limits; we get 58% in this example
+
+# Greater Than probabilities
+# we need to take 1 minus the probability of waiting less than 7 minutes
+from scipy.stats import uniform
+1 - uniform.cdf(7,0,12) # .41
+
+# Calculating the probability of waiting between 4 and 7 minutes
+from scipy.stats import uniform
+uniform.cdf(7,0,12) - uniform.cdf(4,0,12) # gives us 25%
+
+# Total area = 1
+# To calculate the probability of waiting between 0 and 12 minutes, we multiply 12 by 1/12, which is 1, or 100%
+# this makes sense since we are certain we will wait between 1 and 12 minutes
+
+# Generating random numbers according to uniform distribution
+# .rvs takes in the min value, max value, followed by the # of random values we want to generate
+from scipy.stats import uniform
+uniform.rvs(0,5, size = 10) # generates 10 random values between 0 and 5
+
+# Min and max wait times for back-up that happens every 30 min
+min_time = 0
+max_time = 30
+
+# Import uniform from scipy.stats
+from scipy.stats import uniform
+
+# Calculate probability of waiting less than 5 mins
+prob_less_than_5 = uniform.cdf(5,0,30)
+print(prob_less_than_5)
+
+# Calculate probability of waiting more than 5 mins
+prob_greater_than_5 = 1 - uniform.cdf(5,0,30)
+print(prob_greater_than_5)
+
+# Calculate probability of waiting 10-20 mins
+prob_between_10_and_20 = uniform.cdf(20,0,30) - uniform.cdf(10,0,30)
+print(prob_between_10_and_20)
