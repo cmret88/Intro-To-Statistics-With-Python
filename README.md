@@ -466,3 +466,5 @@ binom.rvs(8, 0.5, size=1)
 # Other probabilities
 # for example, having a coin that is heavier on one side than the other, so the probability of getting heads is only 25%
 binom.rvs(3, 0.5, size=10)
+
+2 minute mark
