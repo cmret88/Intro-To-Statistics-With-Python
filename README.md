@@ -500,5 +500,20 @@ P(heads > 7)
 # if trials are not independent, the binomial distribution doesn't apply
 # not binomial distribution if the probabilities of a second trial are altered due to outcome of the first
 
+# Import binom from scipy.stats
+from scipy.stats import binom
 
+# Set random seed to 10
+np.random.seed(10)
 
+# Simulate a single deal
+print(binom.rvs(1, .3, size=1))
+
+# Simulate 1 week of 3 deals
+print(binom.rvs(3, .3, size=1))
+
+# Simulate 52 weeks of 3 deals
+deals = binom.rvs(3, .3, size=52)
+
+# Print mean deals won per week
+print(np.mean(deals))
