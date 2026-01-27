@@ -467,4 +467,38 @@ binom.rvs(8, 0.5, size=1)
 # for example, having a coin that is heavier on one side than the other, so the probability of getting heads is only 25%
 binom.rvs(3, 0.5, size=10)
 
-2 minute mark
+# Binomial distribution
+# probability distribution of the # of successes in a sequence of independent trials
+# it can tell us the probability of getting some # of heads in a sequence of coin flips
+# this is a discrete distribution
+# n: total # of trials
+# p: probability of success
+binom.rvs(n=10, p=0.5, size=20)
+# we have the biggest chance of getting 5 heads total, and a much smaller chance of getting 0 heads or 10 heads
+
+# What is the probability of 7 heads?
+P(heads=7)
+# binom.pmf(num heads, num trials, prob of heads)
+binom.pmf(7, 10, 0.5)
+
+# What is the probability of 7 or fewer heads?
+# binom.cdf gives the probability of getting a # of successes less than or equal to the first argument
+p(heads =< 7)
+binom.cdf(7, 10, 0.5)
+
+# What is the probability of more than 7 heads?
+P(heads > 7)
+1-binom.cdf(7, 10, 0.5)
+
+# Expected Value
+# n * p
+# Expected # of heads out of 10 flips = 10 x 0.5 = 5
+
+# Independence
+# the binomial distribution is a probability distribution of the # of successes in a sequence of independent trials
+# the outcome of one trials shouldn't have an effect on the next
+# if trials are not independent, the binomial distribution doesn't apply
+# not binomial distribution if the probabilities of a second trial are altered due to outcome of the first
+
+
+
