@@ -601,3 +601,16 @@ print(prob_3000_to_7000)
 # Calculate amount that 25% of deals will be less than
 pct_25 = norm.ppf(.25, 5000, 2000)
 print(pct_25)
+
+# Calculate new average amount
+new_mean = 5000 + (5000*.20)
+
+# Calculate new standard deviation
+new_sd = 2000 + (2000*.3)
+
+# Simulate 36 new sales
+new_sales = norm.rvs(new_mean, new_sd, size = 36)
+
+# Create histogram and show
+plt.hist(new_sales)
+plt.show()
