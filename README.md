@@ -538,3 +538,50 @@ print(won_25pct)
 # Expected number won with 35% win rate
 won_35pct = 3 * .35
 print(won_35pct)
+
+#### The Normal Distribution ####
+# bell curve
+# symmatrical
+# the area beneath the curve is 1
+# curve never hits 0
+# described by mean and standard deviation
+
+# Standard Normal Distribution -> when the mean is 0 and the standard deviation is 1
+# 68% of the area is within 1 standard deviation of the mean
+# 95% of the area falls within 2 standard deviations of the mean
+# 99.7% of the area fall within 3 stds
+# sometimes called 58-95-99-97 rule
+
+# Example
+# What percent of women are shorter than 154cm?
+from scipy.stats import norm
+norm.cdf(154, 161, 7)
+# we pass in the number of interest, 154, followed by the mean and std of the distribution we are using
+# this give us 16% of woman are shorter than 154cm
+
+# What percent of women are taller than 154cm?
+from scipy.stats import norm
+1 - norm.cdf(154, 161, 7)
+# this gives us 84% of women are taller than 154cm
+
+# What percent of women are 154-157cm?
+norm.cdf(157, 161, 7) - norm.cdf(154, 161, 7)
+# this gives us 12.5%
+
+# What height are 90% of women shorter than?
+# we pass 0.9 into norm.ppf along with same mean and std that we've been working with
+norm.ppf(0.9, 161, 7)
+# this tells us that 90% of women are shorter than 170cm tall
+
+# What height are 90% of women taller than? This is also the height that 10% of women are shorter than
+norm.ppf((1-0.9), 161, 7)
+
+# Generating random numbers
+# just like with other distributions, we can generate random numbers from a normal distribution using norm.rvs
+# we pass the distribution's mean and std, and the sample size we want
+# generate 10 random heights
+norm.rvs(161, 7, size = 10)
+
+
+
+
