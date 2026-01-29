@@ -614,3 +614,49 @@ new_sales = norm.rvs(new_mean, new_sd, size = 36)
 # Create histogram and show
 plt.hist(new_sales)
 plt.show()
+
+#### The Central Limit Theorem ####
+# Dice rolling example
+die = pd.Series([1, 2, 3, 4, 5, 6])
+# Simulating rolling the die 5 times
+samp_5 = die.sample(5, replace = True)
+print(samp_5) # prints 'array([3,1,4,1,1])
+# Now take the mean
+np.mean(samp_5) # prints 2.0
+
+# Rolling the dice 5 times 10 times
+# Repeat 10 times:
+# Roll 5 itimes
+# take the mean
+# Use a for loop
+# we loop from 0 to 9 so that the process is repeated 10 times
+# inside the loop, we roll 5 times and append the sample's mean to the sample_means list
+sample_means = []
+for i in range(10):
+    samp_5 = die.sample(5, replace = True)
+    sample_means.append(np.mean(samp_5))
+# this gives us a list of 10 different sample means
+# [3.8, 4.0, 3.8, 3.6, 3.2, 4.8, 2.6, 3.0, 2.6, 2.0]
+
+# Sampling distributions
+# 100 sample means
+sample_means = []
+for i in range (100):
+    sample_means.append(np.mean(die.sample(5, replace = True)))
+# resembles normal distribution
+
+# 1000 sample means
+sample_means = []
+for i in range (1000):
+    sample_means.append(np.mean(die.sample(5, replace = True)))
+# resembles normal distribution even more
+# THIS PHENOMENOM IS KNOWN AS THE CENTRAL LIMIT THEOREM
+# CLT -> THE SAMPLING DISTRIBUTION OF A STATISTIC BECOMES CLOSER TO THE NORMAL DISTRIBUTION AS THE # OF TRIALS INCREASES
+# CLT only works if the samples are random and independent
+
+# STD & CLT
+sample_sds = []
+for i in range(1000):
+    sample_sds.append(np.std(die.sample(5, replace = True)))
+    
+# Proportions & the CLT 2.44 mark
