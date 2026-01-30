@@ -660,3 +660,26 @@ for i in range(1000):
     sample_sds.append(np.std(die.sample(5, replace = True)))
     
 # Proportions & the CLT 2.44 mark
+# sampling from the sales team 10 times w/ replacement and seeing how many draws have Claire as the outcome
+# 10% of draws were Claire in this case
+sales_team = pd.Series(['Amir, 'Brian', 'Claire', 'Damian'])
+sales_team.sample(10, replace = True)
+
+# if we draw again, there are 40% Claires
+sales_team.sample(10, replace = True)
+
+# if we repeat this 1000 times and plot the distribution of the sample proportions, it resembles a normal distribution centered around 0.25, since Claire's name was on 25% of the tickets
+# since these sampling distributions are normal, we can take their mean to get an estimate of a distribution's mean, std, or proportion
+# taking the mean from earlier
+np.mean(sample_means) # results in 3.48, close to the expected value
+
+# estimate propoertion of 'Claire's
+np.mean(sample_props) # 0.26
+
+# this is a useful method for estimating characteristics of an underlying distribution
+# CLT also comes in handy when you need to more easily estimate characteristics of large populations
+
+
+
+
+
