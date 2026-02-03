@@ -769,3 +769,82 @@ poisson.rvs(8, size = 10)
 # array([9,9,8,7,11,3,10,6,8,14])
 
 # the CLT still applies!
+
+# Import poisson from scipy.stats
+from scipy.stats import poisson
+
+# Probability of 5 responses
+prob_5 = poisson.pmf(5,4)
+print(prob_5)
+
+# Import poisson from scipy.stats
+from scipy.stats import poisson
+
+# Probability of 5 responses
+prob_coworker = poisson.pmf(5,5.5)
+print(prob_coworker)
+
+# Import poisson from scipy.stats
+from scipy.stats import poisson
+
+# Probability of 2 or fewer responses
+prob_2_or_less = poisson.cdf(2,4)
+print(prob_2_or_less)
+
+# Import poisson from scipy.stats
+from scipy.stats import poisson
+
+# Probability of > 10 responses
+prob_over_10 = 1-poisson.cdf(10,4)
+print(prob_over_10)
+
+#### More Probability Distributions ####
+
+# Exponential distribution
+# probability of time between Poisson events
+# probability of > 1 day between adoptions
+# probability of < 10 min between restaurant arrivals
+# also uses lambda (rate)
+# continuous (time)
+
+# Customer service requests
+# on avg, one customer service ticket is created every 2 min
+# lambda = 0.5 customer service tickets created each min
+# the rate affects the shape of the distribution and how steeply it declines
+
+# Expected value of expontential distribution
+# in terms of rate (Poisson)
+# lambda = 0.5 reqs per min
+# in terms of time between events (exponential):
+# 1/lambda = 1 request per 2 minutes
+# 1/.5=2
+
+# how long until a new request is created?
+# P(wait < 1 min) =
+# scale = 1/lambda = 1/0.5 = 2
+from scipy.stats import expon
+expon.cdf(1, scale = 2)
+# gives us about a 40% chance
+
+# what is the probability that we will wait more than 4 min?
+# P(wait > 4min) =
+1 - expon.cdf(4, scale = 2)
+# 13.5%
+
+# P(1 min < wait < 4min)=
+expon.cdf(4, scale = 2) - expon.cdf(1, scale = 2)
+# 47% chance you'll be waiting between 1 and 4 min
+
+# Student's T-Distribution
+# similar in shape to a normal distribution
+# if we compare the normal distribution with the t-distribution w/ one degree of freedom, the t-distribution's tails are thicker
+# this means obs are more likely to fall further from the mean
+
+# Degrees of freedom (df)
+# the parameter df affects the thickness of the tails
+# lower df = thicker tails, higher standard deviation
+# higher df = closer to normal distribution
+
+# Log-normal distribution
+# variable whose logarithm is normally distributed
+# ex. length of chess games, bp in adults, # of hospitalizations in 2003 SARS outbreak
