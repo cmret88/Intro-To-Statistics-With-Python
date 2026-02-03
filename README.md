@@ -726,3 +726,46 @@ print(np.mean(sample_means))
 # Print mean of num_users in amir_deals
 print(np.mean(amir_deals['num_users']))
 
+#### The Poisson Distribution ####
+# Poisson processes
+# events appear to happen at a certain rate, but completely at random
+# ex. # of animals adopted from an animal shelter per week; # of people arriving at a restaurant per hour; # of earthquakes in CA/year
+# time unit is irrelevant, as long as you use the same unit when talking about the same situation
+# describes the probability of some # of events occurring over a fixed period of time
+# ex. probability of >= 5 animals adopted from an animal shelter per week
+# ex. probability of 12 people arriving at a restuaurant per hour
+# ex. probability of < 20 earthquakes in CA per year
+# Lambda - avg # of events per time interval
+# avg # of adoptions per week, for example
+# discrete distribution b/c we are counting events
+# changes the shape of the distribution
+# peak is the lambda value
+
+# probability of a single value
+# if the avg # of adoptions is 8 per week, what is P(# adoptions in a week = 5)
+# passes 5 as the first argument and 8 as the second argument to indicate distribution's mean
+# gives us 9%
+from scipy.stats import poisson
+poisson.pmf(5, 8) 
+
+# probability of less than or equal to
+# what is P(# of adoptions in a week =<5)?
+# results in 19%
+from scipy.stats import piosson
+poisson.cdf(5, 8)
+
+# Probability of greater than
+# what is the P(# adoptions in a week >5)?
+1-poisson.cdf(5, 8)
+# 81%
+
+# if the average # of adoptions per week is 10, what is P(# adoptions in a week > 5)?
+1 - poisson.cdf(5, 10)
+# 93%
+
+# Sampling from a Poisson distribution
+from scipy.stats import poisson
+poisson.rvs(8, size = 10)
+# array([9,9,8,7,11,3,10,6,8,14])
+
+# the CLT still applies!
