@@ -917,9 +917,33 @@ sns.lmplot(x='life_exp', y='happiness_score',data=world_happiness, ci=None)
 cor = world_happiness['life_exp'].corr(world_happiness['happiness_score'])
 
 #### Correlation Caveats ####
+# non-linear relationships, such as a quadratic relationship
+# corr shouldn't be used blindly
+# visualize your data whenever possible
+# body weight vs. awake take in mammals
+# if we take a closer look at the distribution of body weight, it is skewed
+# when data is highly skewed, we can apply log transformation
+# creates a visual that is more linear than the one between regular bodyweight and awake time
+msleep['log_bodywt'] = np.log(msleep['bodywt'])
+sns.lmplot(x='log_bodywt',
+           y='awake',
+           data=msleep,
+           ci=None)
+plt.show()
 
+# Other transformations
+# log transformation
+# square root transformation
+# reciprocal transformation
+# combo of these
 
+# why use a transformation?
+# certain stat methods rely on variables having a linear relationship
+# corr coeff
+# linear regression
 
+# CORRELATION DOESN'T IMPLY CAUSATION
+# spurrious correlations from confounding factors
 
 
 
