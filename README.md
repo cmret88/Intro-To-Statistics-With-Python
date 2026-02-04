@@ -890,7 +890,7 @@ plt.show()
 # Adding a trendline
 # add ci=None (means that there aren't any confidence interval marins around the line)
 import seaborn as sns
-sns.scatterplot(x='sleep_total', y='sleep_rem', data=msleep, ci=None)
+sns.lmplot(x='sleep_total', y='sleep_rem', data=msleep, ci=None)
 plt.show()
 
 # Computing correlation
@@ -907,11 +907,16 @@ msleep['sleep_rem'].corr(msleep['sleep_total'])
 # Kendall's tau
 # Spearman's rho
 
+# Create a scatterplot of happiness_score vs. life_exp and show
+sns.scatterplot(x='life_exp', y='happiness_score',data=world_happiness)
 
+# Create scatterplot of happiness_score vs life_exp with trendline
+sns.lmplot(x='life_exp', y='happiness_score',data=world_happiness, ci=None)
 
+# Correlation between life_exp and happiness_score
+cor = world_happiness['life_exp'].corr(world_happiness['happiness_score'])
 
-
-
+#### Correlation Caveats ####
 
 
 
