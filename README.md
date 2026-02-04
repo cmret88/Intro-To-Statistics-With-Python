@@ -980,6 +980,37 @@ cor = world_happiness['log_gdp_per_cap'].corr(world_happiness['happiness_score']
 print(cor)
 
 #### Design of Experiments ####
+# What is the effect of the treatment of the response
+# treatment: explanatory/independent variable
+# response: response/depenent variable
+# ex. what is the effect of an ad on # of products purchased?
+# tx: ad
+# response: # of products purchased
+
+# Controlled experiments
+# participants are assigned by researcher to either tx group or control group
+# tx sees ad
+# control doesn't
+# the groups should be comparable
+# if they aren't, this could lead to confounding, or bias
+# to reduce bias, we use certain tools
+# randomized control trial - particiipants are randomly assigned to tx/control group
+# placebo - resembles tx, but has no effect; participants will not know what group they are in
+# double-blind trial - person giving the tx/running the study doesn't know whether the tx is real or placebo
+
+# Observational studies
+# participants are not randomly assigned to groups
+# they assign themselves based on pre-existing characteristics
+# for ex, you would use current smokers b/c you can't make people start smoking
+# these can't establish causation, only association
+# effects can be confounded by factors that got certain people into the control or tx groups
+# these can be controlled for, however
+
+# Longitudinal vs cross-sectional studies
+# L - participants are followed over a period of time to examine effect of tx on response
+# C - data on participants is collected from a single snapshot in time
+# L - effect of age on height is not confounded by generation
+# L - more expensive
 
 
 
