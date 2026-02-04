@@ -894,4 +894,45 @@ sns.scatterplot(x='sleep_total', y='sleep_rem', data=msleep, ci=None)
 plt.show()
 
 # Computing correlation
+# calculating the corr coeff between two Series
+# calculating the corr between sleep_total and sleep_rem columns of msleep
+# passing in the other Series we're interested in
+# note that doesn't matter which Series the method is invoked on and which is passed in
+# corr between x and y, and y and x, are the same
+msleep['sleep_total'].corr(msleep['sleep_rem'])
+msleep['sleep_rem'].corr(msleep['sleep_total'])
+
+# More ways to calculate corr
+# used in this course: Pearson product-moment correlation(r) - this is the most common
+# Kendall's tau
+# Spearman's rho
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
