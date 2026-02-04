@@ -861,3 +861,37 @@ print(1-expon.cdf(4, scale=2.5))
 
 # Print probability response takes 3-4 hours
 print(expon.cdf(4, scale=2.5) - expon.cdf(3, scale = 2.5))
+
+#### Correlation ####
+# Relationships between two variables (numeric)
+# visualization with scatter plots
+# x-axis variable, explanatory or independent variable
+# y-axis variable, response or dependent variable
+# Correlation coefficient
+# quantifies the linear relationship between two variables
+# number between -1 and 1
+# magnitude corresponds to strength of relationship
+# sign (+ or -) corresponds to direction of variables
+# corr coeff of .99 is a very strong relationship
+# corr coeff of .75 is a strong relationship, data is more spread out
+# corr coeff of .56 is a moderate relationship
+# corr coeff of .21 is a weak relationship
+# corr coeff of .04 is no relationship (knowing the value of x says nothing about value of y)
+
+# as x increases, y increases, positive correlation
+# as x increases, y decreases, negative correlation
+
+# Visualizing relationships
+# we create a scatterplot using sns.scatterplot, passing it the name of the variable for the x-axis, name of the variable for the y-axis, as well as the msleep DataFrame to the data argument
+import seaborn as sns
+sns.scatterplot(x='sleep_total', y='sleep_rem', data=msleep)
+plt.show()
+
+# Adding a trendline
+# add ci=None (means that there aren't any confidence interval marins around the line)
+import seaborn as sns
+sns.scatterplot(x='sleep_total', y='sleep_rem', data=msleep, ci=None)
+plt.show()
+
+# Computing correlation
+
